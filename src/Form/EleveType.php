@@ -1,0 +1,42 @@
+<?php 
+// src/Form/EleveType.php
+namespace App\Form;
+
+
+use Symfony\Component\Form\AbstractType;
+use App\Entity\Eleve;
+use App\Entity\Matiere;
+use App\Entity\Professeur;
+use App\Entity\Proviseur;
+use App\Entity\Lycee;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
+class EleveType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+
+        $builder
+            ->add('prenom', TextType::class, ['label' => 'Prénom'])
+            ->add('nom', TextType::class, ['label' => 'Nom'])
+            ->add('matiere', EntityType::class, ['class' => Matiere::class,'choice_label' => 'matiere',])            
+            ->add('professeur', EntityType::class, ['class' => Professeur::class,'choice_label' => 'professeurs',])
+            ->add('proviseur', EntityType::class, ['class' => Proviseur::class,'choice_label' => 'proviseur',])       
+            ->add('lycee', EntityType::class, ['class' => Lycee::class,'choice_label' => 'lycee',])         
+
+            ->add('save', SubmitType::class, [
+                'attr' => ['class' => 'save'],
+            ]);
+    }
+    
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Eleve::class,
+        ]);
+    }
+}

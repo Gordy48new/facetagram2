@@ -1,0 +1,14 @@
+{% extends 'navbar.html.twig' %}
+
+{% form_theme formulaireNew 'bootstrap_4_layout.html.twig' %}
+
+ {% block stylesheets %}
+ {{parent()}}
+
+<link href="{{asset('/css/theme.css') }}" rel="stylesheet" media="all">
+ {% endblock %}
+
+{% block nav %}
+{{ parent() }}
+    {{form(formulaireNew)}}
+    {% endblock %}
