@@ -2,11 +2,13 @@
 // src/Controller/FormController.php
 namespace App\Controller;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\ContactType;
 use App\Entity\Contact;
+use App\Service\MessageGenerator;
 
 class FormController extends AbstractController
 {
@@ -37,24 +39,28 @@ class FormController extends AbstractController
         return $this->render('contact.html.twig' , ['formulaire' => $form->createView()]);
         }
 
+    /**
+     * @Route("/contactlist", name="contactlist" )
+     */
+    public function show(Request $request, MessageGenerator $messageGenerator)
+    {
+        // je pense à bien injecter en parametre mon service pour l'utiliser
 
-
-        /**
-        * @Route("/contactlist", name="contactlist" )
-        */
-        public function show(Request $request)
-        {
         // get Repository va aller au niveau des données dans la table précisée
         // SELECT query
-        $repository = $this->getDoctrine()->getRepository(Contact::class);
-        // a ce stade il a accès au données
-        // je veux stocker dans la variable $contacts TOUT mes contacts
+        $repository = $this->getDoctrine()->getRepository(Champs::class);
         $contacts = $repository->findAll();
 
+        // stocker dans $message le resultat du service : donc un message gentil
+        $message = $messageGenerator->getHappyMessage();
 
-        return $this->render('contactlist.html.twig', ['contacts'=>$contacts]);
-        }//entre guillement c'est le nom utillisé dans le TWIG
-        //avec $ c'est utilisé sur le Controller
+        // entre guillement c'est le nom utilisé sur TWIG
+        // avec $ c'est utilisé sur le controller
+
+    return $this->render('contactlist.html.twig', ['contacts'=>$contacts, 'message'=> $message]);
+    }
+    
+    
 
         /**
          * @Route("/contact/edit/{id<\d+>}")

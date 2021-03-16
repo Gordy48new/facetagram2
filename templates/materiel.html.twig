@@ -1,6 +1,6 @@
 {% extends 'navbar.html.twig' %}
 
-{% form_theme formulaire 'bootstrap_4_layout.html.twig' %}
+{% form_theme matFormulaire 'bootstrap_4_layout.html.twig' %}
 
  {% block stylesheets %}
  {{parent()}}
@@ -10,5 +10,5 @@
 
 {% block nav %}
 {{ parent() }}
-    {{form(formulaire)}}
+    {{form(matFormulaire)}}
     {% endblock %}

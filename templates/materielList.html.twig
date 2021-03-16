@@ -10,17 +10,15 @@
 {{ parent() }}
 <br/>
 <br/>
-<br>
-{{message}}
-<br/>
- <h1>Mes contacts</h1>
+ <h1>Materiel</h1>
 
     <ul>
-    {% for contact in contacts %}
+    {% for materiel in lemateriel %}
     <br/>
-        <li>{{ contact.firstname | upper }}</li>
-        <li>{{ contact.lastname}}</li>
-        <li>{{ contact.organization }}</li>
+        <li>{{ materiel.nom | upper }}</li>
+        <li>{{ materiel.prix}}</li>
+        <li>{{ materiel.entreprise}}</li>
+        <li>{{ materiel.livraisonGratuite }}</li>
         <hr/>
     {% endfor %}
 </ul>
@@ -29,4 +27,3 @@
 
 
 {% endblock %}
-

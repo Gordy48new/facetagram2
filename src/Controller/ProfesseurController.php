@@ -27,7 +27,7 @@ class ProfesseurController extends AbstractController
    		 }
 
       
-        return $this->render('new.html.twig', ['formulaireNew' => $form->createView()]);
+        return $this->render('new.html.twig', ['formulaire' => $form->createView()]);
 
     }
 }

@@ -1,12 +1,12 @@
 {#affiche moi mon formulaire#}
 {# templates/default/new.html.twig#}
 {% extends 'parent.html.twig' %}
-{% form_theme formulaireNew 'bootstrap_4_layout.html.twig' %}
+{% form_theme formulaire 'bootstrap_4_layout.html.twig' %}
 
 
 
-{% block contenuPrincipal %}
+{% block nav %}
         {{ parent() }}
         <br>
-        {{form(formulaireNew) }}
+        {{form(formulair) }}
 {% endblock %}

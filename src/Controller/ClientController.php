@@ -29,7 +29,7 @@ class ClientController extends AbstractController
    		 }
 
       
-        return $this->render('client.html.twig', ['formulaireNew' => $form->createView()]);
+        return $this->render('client.html.twig', ['formulaire' => $form->createView()]);
 
     }
 }
